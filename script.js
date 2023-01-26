@@ -7,7 +7,7 @@ const newOdp2=document.querySelector('#odp2');
 const newOdp3=document.querySelector('#odp3');
 const newOdp4=document.querySelector('#odp4');
 const again = document.querySelector('#again');
-const numQuestion = document.querySelector('#number-question');
+let numQuestion = document.querySelector('#number-question');
 const answer = document.querySelectorAll('.btn-outline-primary');
 const answer1 = document.querySelector('#answer1');
 const answer2 = document.querySelector('#answer2');
@@ -91,7 +91,6 @@ for (let k = 0; k < 4; k++) {  //iterowanie po odpowiedziach, żeby każdy przyc
                 answer[2].classList.add("btn-outline-primary")
                 answer[3].classList.add("btn-outline-primary")
                 answer[0].disabled = true;
-
             }
             if (k == 1) {  //kasowanie czerwonego obramowania po blednych odpowiedziach
                 answer[0].disabled = true;
@@ -168,7 +167,7 @@ nextAnswers = () => {
     answer[3].disabled = false;
     numQuestion.textContent = `Pytanie: ${numberOfQuestion}`;
     points.textContent = `Punkty: ${numberOfPoints}`;
-    image.src = quiz[j].image;    //przypisanie obrazka
+    firstQuestionImage.src = quiz[j].image;    //przypisanie obrazka
     question.textContent = quiz[j].question;  //przypisanie nowego pytania
     answer1.textContent = quiz[j].answers[0]; //przypisanie następnych odpowiedzi do przycisków
     answer2.textContent = quiz[j].answers[1];
@@ -277,6 +276,8 @@ addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli py
     newOdp3.value="";
     newOdp4.value="";
     newCorrectAnswer.value="";
+
+
 })
 
 goBack.addEventListener('click', function(){
@@ -284,14 +285,10 @@ goBack.addEventListener('click', function(){
         dangerAlert.style.display="block";
     }
     else{
-        answer1.style.display='block';
-        answer2.style.display='block';
-        answer3.style.display='block';
-        answer4.style.display='block';
-        scoreBtn.style.display='block';
-        question.style.display='block';
-        numQuestion.style.display='block';
-        points.style.display='block';
+        numberOfQuestion=1;
+        numberOfPoints=0;
+        numQuestion.textContent=`Pytanie ${numberOfQuestion}`;
+        points.textContent= `Punkty: ${numberOfPoints}`;
 
         newQuestion.style.display="none";
         goBack.style.display="none";
@@ -309,5 +306,19 @@ goBack.addEventListener('click', function(){
         answer2.textContent=quiz[n].answers[1]
         answer3.textContent=quiz[n].answers[2]
         answer4.textContent=quiz[n].answers[3]
+
+        question.style.cssFloat="Left";
+        answer1.style.display='block';
+        answer2.style.display='block';
+        answer3.style.display='block';
+        answer4.style.display='block';
+        scoreBtn.style.display='block';
+        question.style.display='block';
+        numQuestion.style.display="block";
+        points.style.display='block';
+
+        
+
+        
     }
 })
