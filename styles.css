@@ -40,6 +40,23 @@ h1 {
     display: block;
     padding-top: 20%;
 }
+#answer1{
+    width: 200px;
+}
+#answer2{
+    width: 200px;
+}
+#answer3{
+    width: 200px;
+}
+#answer4{
+    width: 200px;
+}
+.answer{
+    display: flex;
+    justify-content: center;
+    margin-top:2%;
+}
 .answer1{
     text-align: center;
     margin-top: 40px;
@@ -110,4 +127,7 @@ body {
 }
 .alert{
     margin-top: 2%;
+}
+.score{
+    margin-top:3%;
 }
