@@ -1,4 +1,6 @@
 let modalBody = document.querySelector('.modal-body');
+const questionContainer=document.querySelector('.first-question');
+const answersContainer=document.querySelector('.answers');
 const deleteBtn = document.querySelector('#deleteBtn');
 const addBtn=document.querySelector('#addBtn');
 const newQuestion=document.querySelector('#new-question');  //pole do wpisania nowego pytania przez użytkownika
@@ -8,6 +10,7 @@ const newOdp3=document.querySelector('#odp3');
 const newOdp4=document.querySelector('#odp4');
 const again = document.querySelector('#again');
 let numQuestion = document.querySelector('#number-question');
+const lineBreak=document.createElement('br');
 const answer = document.querySelectorAll('.btn-outline-primary');
 const answer1 = document.querySelector('#answer1');
 const answer2 = document.querySelector('#answer2');
@@ -20,6 +23,21 @@ const newImageText=document.querySelector('#choose-image-text');
 const newImage=document.querySelector('#choose-image');
 const addNewQuestion=document.querySelector('#add-new-question');
 const goBack=document.querySelector('#back');
+const accordion=document.querySelector('#accordion');
+const divCardBody = document.createElement('div');
+let createdButton=document.createElement("a");
+
+let idAccordion=document.createElement('div');
+let divCard=document.createElement('div');
+let h5=document.createElement('h5');
+let buttonCollapse=document.createElement('button');
+let divCardHeader=document.createElement('div');
+let divCollapse=document.createElement('div');
+let cardBody=document.querySelector('.card-body');
+let questionAddedContainer=document.querySelector('.added-questions-container');
+let questionAdded=document.querySelector('#question-added-content');
+let answerAdded=document.querySelector('#answer-added-content');
+let questionFirst=document.querySelector('#question-first');
 let newImageVariable;
 let dangerAlert = document.querySelector('.alert');
 let question = document.querySelector('.question');
@@ -34,6 +52,9 @@ let m=0; //do dodawania pytania
 let n=0;
 correctAnswer = "";
 //scoreBtn.style.display="none";    //przycisk wynik ukryty na początku
+cardBody.innerHTML="";
+scoreBtn.style.display="none";
+createdButton.style.display="none";
 goBack.style.display="none";
 dangerAlert.style.display="none";
 newQuestion.style.display="none";
@@ -175,11 +196,17 @@ nextAnswers = () => {
     answer4.textContent = quiz[j].answers[3];
     l++;
     j++;
+    if (question.textContent===""){
+        endOfQuiz();
+    }
 }
 
 endOfQuiz = () => {
     scoreBtn.style.display = "block"
     modalBody.textContent = `Twój wynik to: ${numberOfPoints}/${numberOfQuestion}`;
+    questionContainer.style.display="none";
+    answersContainer.style.display="none";
+    scoreBtn.style.display="block";
 }
 again.addEventListener('click', function () {
     console.log("Powtarzam");
@@ -260,8 +287,75 @@ addBtn.addEventListener('click',function(){
 })
 
 addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli pytań
+    console.log(m);
     quiz[m].question=newQuestion.value; //przypisanie nowego pytania
     quiz[m].answers.push(newOdp1.value, newOdp2.value, newOdp3.value, newOdp4.value);   //dodanie do tablicy odpowiedzi podanych przez użytkownika
+    if (m>0){
+        let divCard = document.createElement('div');
+        divCard.setAttribute("id", `card${m}`); //robienie dynamicznej zmiennej
+
+        let divCardHeader = document.createElement('div');
+        divCardHeader.setAttribute("id", `cardHeader${m}`); //robienie dynamicznej zmiennej
+
+        let h5 = document.createElement('h5');
+        h5.setAttribute("id", `cardh5${m}`); //robienie dynamicznej zmiennej
+
+        let buttonCollapse=document.createElement('button');
+        buttonCollapse.setAttribute("id", `buttonCollapse${m}`); //robienie dynamicznej zmiennej
+
+        let divCollapse=document.createElement('div');  //robienie dynamicznej zmiennej
+        divCollapse.setAttribute("id", `divCollapse${m}`);
+
+        let divCardBody = document.createElement('div');    //robienie dynamicznej zmiennej
+        divCardBody.setAttribute("id", `divCardBody${m}`);
+
+        createdButton.style.display="block";
+        accordion.appendChild(divCard);
+        divCard.appendChild(divCardHeader);
+        divCardHeader.appendChild(h5);
+        h5.appendChild(buttonCollapse);
+        
+        divCard.setAttribute("class","card");
+        divCardHeader.setAttribute("class", "card-header");
+        divCardHeader.setAttribute("id",`heading${m+1}`);
+        h5.setAttribute("class", "mb-0");
+        buttonCollapse.setAttribute("class", "btn btn-link collapsed");
+        buttonCollapse.setAttribute("data-toggle", "collapse");
+        buttonCollapse.setAttribute("data-target", `#collapse${m+1}`);
+        buttonCollapse.setAttribute("aria-expanded", "false");
+        buttonCollapse.setAttribute("aria-controls", `#collapse${m+1}`);
+        buttonCollapse.setAttribute("id", `question${m+1}`)
+
+        divCard.appendChild(divCollapse);
+        divCollapse.appendChild(divCardBody);
+        divCollapse.setAttribute("id", `collapse${m+1}`);
+        divCollapse.setAttribute("class", "collapse");
+        divCollapse.setAttribute("aria-labelledby", `heading${m+1}`)
+        divCollapse.setAttribute("data-parent", "#accordion")
+        divCardBody.setAttribute("class", 'card-body');
+
+        let questionNext = document.querySelector(`#question${m+1}`);
+        let answersNext = document.querySelector(`#collapse${m+1} .card-body`)
+        questionNext.textContent=newQuestion.value;
+        answersNext.innerHTML+=newOdp1.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+        answersNext.appendChild(lineBreak); //dodanie przejscia do nowej linii
+        answersNext.innerHTML+=newOdp2.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+        answersNext.appendChild(lineBreak);
+        answersNext.innerHTML+=newOdp3.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+        answersNext.appendChild(lineBreak);
+        answersNext.innerHTML+=newOdp4.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+    }
+    else{
+        questionFirst.textContent=newQuestion.value; //dodanie nowego pytania do puli pytań, która jest wyświetlana dla użytkownika
+        cardBody.innerHTML+=newOdp1.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+        cardBody.appendChild(lineBreak); //dodanie przejscia do nowej linii
+        cardBody.innerHTML+=newOdp2.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+        cardBody.appendChild(lineBreak);
+        cardBody.innerHTML+=newOdp3.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+        cardBody.appendChild(lineBreak);
+        cardBody.innerHTML+=newOdp4.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+    }
+
     quiz[m].correctAnswer=newCorrectAnswer.value;   //nazwa poprawnej odpowiedzi dodanej przez użytkownika
     if (quiz[0].image === ""){  //jeśli użytkownik nie wstawi obrazka
         quiz[m].image="";
