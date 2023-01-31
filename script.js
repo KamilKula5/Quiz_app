@@ -1,5 +1,4 @@
 let modalBody = document.querySelector('.modal-body');
-const span = document.createElement('span');
 const questionContainer=document.querySelector('.first-question');
 const answersContainer=document.querySelector('.answers');
 const deleteBtn = document.querySelector('#deleteBtn');
@@ -350,30 +349,143 @@ addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli py
             let questionNext = document.querySelector(`#question${m+1}`);
             let answersNext = document.querySelector(`#collapse${m+1} .card-body`)
             questionNext.textContent=newQuestion.value;
-            answersNext.innerHTML+=newOdp1.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
-            answersNext.appendChild(lineBreak); //dodanie przejscia do nowej linii
-            answersNext.innerHTML+=newOdp2.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
-            answersNext.appendChild(lineBreak);
-            answersNext.innerHTML+=newOdp3.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
-            answersNext.appendChild(lineBreak);
-            answersNext.innerHTML+=newOdp4.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+            if (newOdp1.value === newCorrectAnswer.value){
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                answersNext.appendChild(span);
+                span.setAttribute("style", "color: green"); //kolor poprawnej odpowiedzi ustawiamy na zielony
+                span.innerHTML += newCorrectAnswer.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                answersNext.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
+            else{
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                answersNext.appendChild(span);
+                span.setAttribute("style", "color: red"); //kolor poprawnej odpowiedzi ustawiamy na czerwony
+                span.innerHTML += newOdp1.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                answersNext.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
+            
+            if (newOdp2.value === newCorrectAnswer.value){
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                answersNext.appendChild(span);
+                span.setAttribute("style", "color: green"); //kolor poprawnej odpowiedzi ustawiamy na zielony
+                span.innerHTML += newCorrectAnswer.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                answersNext.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
+            else{
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                answersNext.appendChild(span);
+                span.setAttribute("style", "color: red"); //kolor poprawnej odpowiedzi ustawiamy na czerwony
+                span.innerHTML += newOdp2.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                answersNext.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
+            if (newOdp3.value === newCorrectAnswer.value){
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                answersNext.appendChild(span);
+                span.setAttribute("style", "color: green"); //kolor poprawnej odpowiedzi ustawiamy na zielony
+                span.innerHTML += newCorrectAnswer.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                answersNext.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
+            else{
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                answersNext.appendChild(span);
+                span.setAttribute("style", "color: red"); //kolor poprawnej odpowiedzi ustawiamy na czerwony
+                span.innerHTML += newOdp3.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                answersNext.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
+            if (newOdp4.value === newCorrectAnswer.value){
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                answersNext.appendChild(span);
+                span.setAttribute("style", "color: green"); //kolor poprawnej odpowiedzi ustawiamy na zielony
+                span.innerHTML += newCorrectAnswer.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                answersNext.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
+            else{
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                answersNext.appendChild(span);
+                span.setAttribute("style", "color: red"); //kolor poprawnej odpowiedzi ustawiamy na czerwony
+                span.innerHTML += newOdp4.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                answersNext.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
 
 
         }
         else{
             questionFirst.textContent=newQuestion.value; //dodanie nowego pytania do puli pytań, która jest wyświetlana dla użytkownika
-            cardBody.innerHTML+=newOdp1.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
-            cardBody.appendChild(lineBreak); //dodanie przejscia do nowej linii
-            cardBody.innerHTML+=newOdp2.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
-            cardBody.appendChild(lineBreak);
-            cardBody.innerHTML+=newOdp3.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
-            cardBody.appendChild(lineBreak);
-            cardBody.innerHTML+=newOdp4.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
-            cardBody.appendChild(lineBreak);
+            if (newOdp1.value === newCorrectAnswer.value){
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                cardBody.appendChild(span);
+                span.setAttribute("style", "color: green"); //kolor poprawnej odpowiedzi ustawiamy na zielony
+                span.innerHTML += newCorrectAnswer.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                cardBody.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
+            else{
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                cardBody.appendChild(span);
+                span.setAttribute("style", "color: red"); //kolor poprawnej odpowiedzi ustawiamy na czerwony
+                span.innerHTML += newOdp1.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                cardBody.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
+            
+            if (newOdp2.value === newCorrectAnswer.value){
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                cardBody.appendChild(span);
+                span.setAttribute("style", "color: green"); //kolor poprawnej odpowiedzi ustawiamy na zielony
+                span.innerHTML += newCorrectAnswer.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                cardBody.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
+            else{
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                cardBody.appendChild(span);
+                span.setAttribute("style", "color: red"); //kolor poprawnej odpowiedzi ustawiamy na czerwony
+                span.innerHTML += newOdp2.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                cardBody.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
+            if (newOdp3.value === newCorrectAnswer.value){
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                cardBody.appendChild(span);
+                span.setAttribute("style", "color: green"); //kolor poprawnej odpowiedzi ustawiamy na zielony
+                span.innerHTML += newCorrectAnswer.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                cardBody.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
+            else{
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                cardBody.appendChild(span);
+                span.setAttribute("style", "color: red"); //kolor poprawnej odpowiedzi ustawiamy na czerwony
+                span.innerHTML += newOdp3.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                cardBody.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
+            if (newOdp4.value === newCorrectAnswer.value){
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                cardBody.appendChild(span);
+                span.setAttribute("style", "color: green"); //kolor poprawnej odpowiedzi ustawiamy na zielony
+                span.innerHTML += newCorrectAnswer.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                cardBody.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
+            else{
+                const lineBreak2 = document.createElement('br');
+                const span = document.createElement('span');
+                cardBody.appendChild(span);
+                span.setAttribute("style", "color: red"); //kolor poprawnej odpowiedzi ustawiamy na czerwony
+                span.innerHTML += newOdp4.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
+                cardBody.appendChild(lineBreak2); //dodanie przejscia do nowej linii
+            }
 
-            cardBody.appendChild(span);
-            span.setAttribute("style", "color: green");
-            span.innerHTML += newCorrectAnswer.value;
+            
         }
 
         quiz[m].correctAnswer=newCorrectAnswer.value;   //nazwa poprawnej odpowiedzi dodanej przez użytkownika
