@@ -17,6 +17,7 @@ const answer2 = document.querySelector('#answer2');
 const answer3 = document.querySelector('#answer3');
 const answer4 = document.querySelector('#answer4');
 const scoreBtn = document.querySelector('#scoreBtn');
+const scoreClass = document.querySelector('.score');
 const firstQuestionImage = document.querySelector('#first-question-image');
 const newCorrectAnswer=document.querySelector('#correct-answer');
 const newImageText=document.querySelector('#choose-image-text');
@@ -184,34 +185,36 @@ for (let k = 0; k < 4; k++) {  //iterowanie po odpowiedziach, żeby każdy przyc
 }
 
 nextAnswers = () => {
-    wrongAnswer = false;
-    answer[l].classList.remove("btn-outline-success");  //usuniecie zielonego obramowania
-    answer[l].classList.add("btn-outline-primary"); //dodanie defaultowego obramowania (niebieskiego)
-    answer[0].disabled = false;   //usuwanie nieaktywnego przycisku
-    answer[1].disabled = false;
-    answer[2].disabled = false;
-    answer[3].disabled = false;
-    numQuestion.textContent = `Pytanie: ${numberOfQuestion}`;
-    points.textContent = `Punkty: ${numberOfPoints}`;
-    firstQuestionImage.src = quiz[j].image;    //przypisanie obrazka
     question.textContent = quiz[j].question;  //przypisanie nowego pytania
-    answer1.textContent = quiz[j].answers[0]; //przypisanie następnych odpowiedzi do przycisków
-    answer2.textContent = quiz[j].answers[1];
-    answer3.textContent = quiz[j].answers[2];
-    answer4.textContent = quiz[j].answers[3];
-    l++;
-    j++;
     if (question.textContent===""){
+        points.textContent = `Punkty: ${numberOfPoints}`;
         endOfQuiz();
+    }
+    else{
+        wrongAnswer = false;
+        answer[l].classList.remove("btn-outline-success");  //usuniecie zielonego obramowania
+        answer[l].classList.add("btn-outline-primary"); //dodanie defaultowego obramowania (niebieskiego)
+        answer[0].disabled = false;   //usuwanie nieaktywnego przycisku
+        answer[1].disabled = false;
+        answer[2].disabled = false;
+        answer[3].disabled = false;
+        numQuestion.textContent = `Pytanie: ${numberOfQuestion}`;
+        firstQuestionImage.src = quiz[j].image;    //przypisanie obrazka
+        question.textContent = quiz[j].question;  //przypisanie nowego pytania
+        answer1.textContent = quiz[j].answers[0]; //przypisanie następnych odpowiedzi do przycisków
+        answer2.textContent = quiz[j].answers[1];
+        answer3.textContent = quiz[j].answers[2];
+        answer4.textContent = quiz[j].answers[3];
+        l++;
+        j++;
     }
 }
 
 endOfQuiz = () => {
-    scoreBtn.style.display = "block"
+    scoreClass.style.display = "flex"
     modalBody.textContent = `Twój wynik to: ${numberOfPoints}/${numberOfQuestion-1}`;
     questionContainer.style.display="none";
     answersContainer.style.display="none";
-    scoreBtn.style.display="block";
 }
 again.addEventListener('click', function () {
     console.log("Powtarzam");
@@ -220,7 +223,7 @@ again.addEventListener('click', function () {
 
 reset = () => {
     modalBody.textContent = "";
-    answer[0].classList.remove("btn-outline-success");
+    answer[0].classList.remove("btn-outline-success");  //resetowanie kolorowych obramowań
     answer[0].classList.remove("btn-outline-danger");
     answer[0].classList.add("btn-outline-primary");
     answer[1].classList.remove("btn-outline-success");
@@ -250,10 +253,13 @@ reset = () => {
     answer2.textContent = quiz[j].answers[1];
     answer3.textContent = quiz[j].answers[2];
     answer4.textContent = quiz[j].answers[3];
-    image.src = quiz[l].image;
+    //image.src = quiz[l].image;
     question.textContent = quiz[l].question;
     l++;
     j++;
+    questionContainer.style.display="flex";
+    answersContainer.style.display="flex";  //pojawienie sie odpowiedzi po kliknięciu przycisku powtórz
+    scoreClass.style.display="none";    //ustawienie przycisku "wynik" na niewidoczny po kliknięciu powtórz
 }
 
 deleteBtn.addEventListener('click', function () {
@@ -507,6 +513,7 @@ addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli py
 })
 
 goBack.addEventListener('click', function(){    //cofanie po dodaniu własnych pytań i odpowiedzi
+    scoreClass.style.display="none";
     if (quiz[0].question === "" || quiz[0].answers.length == 0 || quiz[0].correctAnswer === ""){
         dangerAlert.style.display="block";
     }
