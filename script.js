@@ -57,8 +57,8 @@ let tempFirstAnswer3="";
 let tempFirstAnswer4="";
 correctAnswer = "";
 //scoreBtn.style.display="none";    //przycisk wynik ukryty na początku
+scoreClass.style.display="none";
 cardBody.innerHTML="";
-scoreBtn.style.display="none";
 createdButton.style.display="none";
 goBack.style.display="none";
 dangerAlert.style.display="none";
@@ -76,25 +76,25 @@ let quiz = [{
     question: "Jaka jest stolina Danii?",
     answers: ["Kopenhaga", "Berlin", "Warszawa", "Praga"],
     correctAnswer: "Kopenhaga",
-    image: "denmark.jpg"
+    image: "images/denmark.jpg"
 },
 {
     question: "Jaki jest najpopularniejszy napój energetyczny na świecie?",
     answers: ["Monster", "Redbull", "Tiger", "Black"],
     correctAnswer: "Redbull",
-    image: "napoj_energetyczny.jpg"
+    image: "images/napoj_energetyczny.jpg"
 },
 {
     question: "Jaki ładunek elektryczny ma neutron?",
     answers: ["Dodatni", "ujemny", "neutralny", "Żadne z powyższych"],
     correctAnswer: "neutralny",
-    image: "neutron.jpg"
+    image: "images/neutron.jpg"
 },
 {
     question: "Jaką mąkę wybierzesz do wypieku biszkoptu?",
     answers: ["Typu 650", "Typ 2000", "Typu 450", "Typu 550"],
     correctAnswer: "Typu 450",
-    image: "Mąka.jpg"
+    image: "images/Mąka.jpg"
 }
 ]
 
@@ -168,7 +168,6 @@ for (let k = 0; k < 4; k++) {  //iterowanie po odpowiedziach, żeby każdy przyc
             }
 
             else {   //jeśli nie odpowiemy na wszystkie pytania
-                numberOfQuestion++;
                 setTimeout(nextAnswers, 1200)
                 i++;
             }
@@ -186,11 +185,12 @@ for (let k = 0; k < 4; k++) {  //iterowanie po odpowiedziach, żeby każdy przyc
 
 nextAnswers = () => {
     question.textContent = quiz[j].question;  //przypisanie nowego pytania
-    if (question.textContent===""){
+    if (question.textContent===""){ //jeśli koniec pytań
         points.textContent = `Punkty: ${numberOfPoints}`;
         endOfQuiz();
     }
     else{
+        numberOfQuestion++;
         wrongAnswer = false;
         answer[l].classList.remove("btn-outline-success");  //usuniecie zielonego obramowania
         answer[l].classList.add("btn-outline-primary"); //dodanie defaultowego obramowania (niebieskiego)
@@ -198,6 +198,7 @@ nextAnswers = () => {
         answer[1].disabled = false;
         answer[2].disabled = false;
         answer[3].disabled = false;
+        points.textContent = `Punkty: ${numberOfPoints}`;
         numQuestion.textContent = `Pytanie: ${numberOfQuestion}`;
         firstQuestionImage.src = quiz[j].image;    //przypisanie obrazka
         question.textContent = quiz[j].question;  //przypisanie nowego pytania
@@ -211,8 +212,9 @@ nextAnswers = () => {
 }
 
 endOfQuiz = () => {
-    scoreClass.style.display = "flex"
-    modalBody.textContent = `Twój wynik to: ${numberOfPoints}/${numberOfQuestion-1}`;
+    scoreClass.style.display = "flex";
+    console.log("koniec");
+    modalBody.textContent = `Twój wynik to: ${numberOfPoints}/${numberOfQuestion}`;
     questionContainer.style.display="none";
     answersContainer.style.display="none";
 }
@@ -254,6 +256,7 @@ reset = () => {
     answer3.textContent = quiz[j].answers[2];
     answer4.textContent = quiz[j].answers[3];
     //image.src = quiz[l].image;
+    firstQuestionImage.src=quiz[l].image;
     question.textContent = quiz[l].question;
     l++;
     j++;
@@ -278,7 +281,6 @@ deleteBtn.addEventListener('click', function () {
     answer2.style.display='none';
     answer3.style.display='none';
     answer4.style.display='none';
-    scoreBtn.style.display='none';
     firstQuestionImage.style.display='none';
     question.style.display='none';
     numQuestion.style.display='none';
@@ -286,16 +288,21 @@ deleteBtn.addEventListener('click', function () {
 })
 
 addBtn.addEventListener('click',function(){
-    newQuestion.style.display="block";
-    goBack.style.display="block";
-    newOdp1.style.display="block";
-    newOdp2.style.display="block";
-    newOdp3.style.display="block";
-    newOdp4.style.display="block";
-    newCorrectAnswer.style.display="block";
-    //newImageText.style.display="block";
-    //newImage.style.display="block";
-    addNewQuestion.style.display="block";
+    if (quiz.length == 4){
+        alert("Najpierw usuń wszystkie pytania");
+    }
+    else{
+        newQuestion.style.display="block";
+        goBack.style.display="block";
+        newOdp1.style.display="block";
+        newOdp2.style.display="block";
+        newOdp3.style.display="block";
+        newOdp4.style.display="block";
+        newCorrectAnswer.style.display="block";
+        //newImageText.style.display="block";
+        //newImage.style.display="block";
+        addNewQuestion.style.display="block";
+    }
 })
 
 addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli pytań
@@ -513,6 +520,7 @@ addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli py
 })
 
 goBack.addEventListener('click', function(){    //cofanie po dodaniu własnych pytań i odpowiedzi
+    numberOfQuestion=1;
     scoreClass.style.display="none";
     if (quiz[0].question === "" || quiz[0].answers.length == 0 || quiz[0].correctAnswer === ""){
         dangerAlert.style.display="block";
@@ -549,7 +557,6 @@ goBack.addEventListener('click', function(){    //cofanie po dodaniu własnych p
         answer2.style.display='block';
         answer3.style.display='block';
         answer4.style.display='block';
-        scoreBtn.style.display='block';
         question.style.display='block';
         numQuestion.style.display="block";
         points.style.display='block';
