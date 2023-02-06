@@ -51,6 +51,7 @@ let j = 1;
 let l = 0;
 let m=0; //do dodawania pytania
 let n=0;
+let tempVariable = false;
 let tempFirstAnswer1="";    //do przechowywania odpowiedzi w card-body
 let tempFirstAnswer2="";
 let tempFirstAnswer3="";
@@ -104,6 +105,7 @@ for (let k = 0; k < 4; k++) {  //iterowanie po odpowiedziach, żeby każdy przyc
     answer[k].addEventListener('click', function () {
         console.log(answer[k].textContent);
         console.log(quiz[i].correctAnswer);
+        
         if (answer[k].textContent === quiz[i].correctAnswer) {   //sprawdzenie czy prawidlowa odpowiedz
             l = k
 
@@ -520,6 +522,7 @@ addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli py
 })
 
 goBack.addEventListener('click', function(){    //cofanie po dodaniu własnych pytań i odpowiedzi
+    m=0;
     numberOfQuestion=1;
     scoreClass.style.display="none";
     if (quiz[0].question === "" || quiz[0].answers.length == 0 || quiz[0].correctAnswer === ""){
@@ -560,9 +563,19 @@ goBack.addEventListener('click', function(){    //cofanie po dodaniu własnych p
         question.style.display='block';
         numQuestion.style.display="block";
         points.style.display='block';
-
-        
-
-        
+        answersContainer.style.display="flex";
+        answer[0].disabled = false;   //usuwanie nieaktywnego przycisku
+        answer[1].disabled = false;
+        answer[2].disabled = false;
+        answer[3].disabled = false;
+        answer[0].classList.remove("btn-outline-success")
+        answer[1].classList.remove("btn-outline-success")
+        answer[2].classList.remove("btn-outline-success")
+        answer[3].classList.remove("btn-outline-success")
+        answer[0].classList.add("btn-outline-primary")
+        answer[1].classList.add("btn-outline-primary")
+        answer[2].classList.add("btn-outline-primary")
+        answer[3].classList.add("btn-outline-primary")
+        i=0; //resetowanie zmiennej 'i' zeby poprawna odpowiedz sie zgadzala
     }
 })
