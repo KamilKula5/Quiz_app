@@ -214,6 +214,7 @@ nextAnswers = () => {
 }
 
 endOfQuiz = () => {
+    m++; //dodanie, żeby dodawanie pytań do puli się nie psuło
     scoreClass.style.display = "flex";
     console.log("koniec");
     modalBody.textContent = `Twój wynik to: ${numberOfPoints}/${numberOfQuestion}`;
@@ -312,6 +313,7 @@ addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli py
         dangerAlert.style.display="block";
     }
     else{
+
         dangerAlert.style.disabled="none";
         questionAddedContainer.style.display="block";
         console.log(m);
