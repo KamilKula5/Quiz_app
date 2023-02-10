@@ -40,7 +40,9 @@ let questionAdded=document.querySelector('#question-added-content');
 let answerAdded=document.querySelector('#answer-added-content');
 let questionFirst=document.querySelector('#question-first');
 let newImageVariable;
-let dangerAlert = document.querySelector('.alert');
+let goBackClicked = false;
+let dangerAlert1 = document.querySelector('#danger1');
+let dangerAlert2 = document.querySelector('#danger2');
 let question = document.querySelector('.question');
 let points = document.querySelector('#points');
 let numberOfPoints = 0;
@@ -51,6 +53,7 @@ let j = 1;
 let l = 0;
 let m=0; //do dodawania pytania
 let n=0;
+let z=1; //do naprawienia pojawiania sie nastepnego pytania
 let tempVariable = false;
 let tempFirstAnswer1="";    //do przechowywania odpowiedzi w card-body
 let tempFirstAnswer2="";
@@ -62,8 +65,9 @@ scoreClass.style.display="none";
 cardBody.innerHTML="";
 createdButton.style.display="none";
 goBack.style.display="none";
-dangerAlert.style.display="none";
+dangerAlert1.style.display="none";
 newQuestion.style.display="none";
+dangerAlert2.style.display="none";
 newOdp1.style.display="none";
 newOdp2.style.display="none";
 newOdp3.style.display="none";
@@ -186,7 +190,7 @@ for (let k = 0; k < 4; k++) {  //iterowanie po odpowiedziach, żeby każdy przyc
 }
 
 nextAnswers = () => {
-    question.textContent = quiz[j].question;  //przypisanie nowego pytania
+    question.textContent = quiz[z].question;  //przypisanie nowego pytania
     if (question.textContent===""){ //jeśli koniec pytań
         points.textContent = `Punkty: ${numberOfPoints}`;
         endOfQuiz();
@@ -202,14 +206,14 @@ nextAnswers = () => {
         answer[3].disabled = false;
         points.textContent = `Punkty: ${numberOfPoints}`;
         numQuestion.textContent = `Pytanie: ${numberOfQuestion}`;
-        firstQuestionImage.src = quiz[j].image;    //przypisanie obrazka
-        question.textContent = quiz[j].question;  //przypisanie nowego pytania
-        answer1.textContent = quiz[j].answers[0]; //przypisanie następnych odpowiedzi do przycisków
-        answer2.textContent = quiz[j].answers[1];
-        answer3.textContent = quiz[j].answers[2];
-        answer4.textContent = quiz[j].answers[3];
+        firstQuestionImage.src = quiz[z].image;    //przypisanie obrazka
+        question.textContent = quiz[z].question;  //przypisanie nowego pytania
+        answer1.textContent = quiz[z].answers[0]; //przypisanie następnych odpowiedzi do przycisków
+        answer2.textContent = quiz[z].answers[1];
+        answer3.textContent = quiz[z].answers[2];
+        answer4.textContent = quiz[z].answers[3];
         l++;
-        j++;
+        z++;
     }
 }
 
@@ -269,7 +273,9 @@ reset = () => {
 }
 
 deleteBtn.addEventListener('click', function () {
+    dangerAlert2.style.display="none";
     quiz.length=0;
+    z=1;
     m=0;    //zerowanie zmiennej, żeby pytania i odpowiedzi były przypisywane od początku do tablicy po usunięciu
     for (let i=0; i <=50; i++){
         quiz.push({
@@ -292,7 +298,7 @@ deleteBtn.addEventListener('click', function () {
 
 addBtn.addEventListener('click',function(){
     if (quiz.length == 4){
-        alert("Najpierw usuń wszystkie pytania");
+        dangerAlert2.style.display="block";
     }
     else{
         newQuestion.style.display="block";
@@ -310,11 +316,11 @@ addBtn.addEventListener('click',function(){
 
 addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli pytań
     if (newOdp1.value== "" || newOdp2.value == "" || newOdp3.value=="" || newOdp4.value== "" || newCorrectAnswer.value== ""){
-        dangerAlert.style.display="block";
+        dangerAlert1.style.display="block";
     }
     else{
 
-        dangerAlert.style.disabled="none";
+        dangerAlert1.style.disabled="none";
         questionAddedContainer.style.display="block";
         console.log(m);
         quiz[m].question=newQuestion.value; //przypisanie nowego pytania
@@ -512,7 +518,6 @@ addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli py
         // else{
         //     quiz[m].image=newImage.files[0].name;   //nazwa obrazka dodanego przez użytkownika
         // }
-        m++;
         newQuestion.value="";
         newOdp1.value="";
         newOdp2.value="";
@@ -524,15 +529,17 @@ addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli py
 })
 
 goBack.addEventListener('click', function(){    //cofanie po dodaniu własnych pytań i odpowiedzi
-    m=0;
+    //m=0;
+    z=1;
+    goBackClicked = true;
     numberOfQuestion=1;
     scoreClass.style.display="none";
     if (quiz[0].question === "" || quiz[0].answers.length == 0 || quiz[0].correctAnswer === ""){
-        dangerAlert.style.display="block";
+        dangerAlert1.style.display="block";
     }
     else{
         questionContainer.style.display="flex";
-        dangerAlert.style.display="none";
+        dangerAlert1.style.display="none";
         numberOfQuestion=1;
         numberOfPoints=0;
         numQuestion.textContent=`Pytanie ${numberOfQuestion}`;
