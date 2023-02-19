@@ -437,7 +437,8 @@ addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli py
                 span.innerHTML += newOdp4.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
                 answersNext.appendChild(lineBreak2); //dodanie przejscia do nowej linii
             }
-
+            quiz[m].correctAnswer=newCorrectAnswer.value;   //nazwa poprawnej odpowiedzi dodanej przez użytkownika
+            m++;    //inkremetacja zeby sie nie popsulo
 
         }
         else{
@@ -507,11 +508,10 @@ addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli py
                 span.innerHTML += newOdp4.value; //dodanie odpowiedzi do puli pytań, która jest wyświetlana dla użytkownika
                 cardBody.appendChild(lineBreak2); //dodanie przejscia do nowej linii
             }
-
-            
+            quiz[m].correctAnswer=newCorrectAnswer.value;   //nazwa poprawnej odpowiedzi dodanej przez użytkownika
+            m++;    //inkrementacja zeby dodawanie pytan sie nie psulo
         }
 
-        quiz[m].correctAnswer=newCorrectAnswer.value;   //nazwa poprawnej odpowiedzi dodanej przez użytkownika
         // if (quiz[0].image === ""){  //jeśli użytkownik nie wstawi obrazka
         //     quiz[m].image="";
         // }
