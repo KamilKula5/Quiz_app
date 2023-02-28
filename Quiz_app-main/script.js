@@ -323,7 +323,7 @@ addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli py
     }
     else{
         if (quizEnded){
-            m--;
+            m--; //odjęcie
         }
         dangerAlert1.style.disabled="none";
         questionAddedContainer.style.display="block";
