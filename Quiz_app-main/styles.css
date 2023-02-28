@@ -1,0 +1,155 @@
+h1 {
+    text-align: center;
+    color: red;
+}
+.container{
+    max-width: 800px !important;
+    margin-top: 100px;
+    border: 1px solid orange;
+    overflow: hidden;
+}
+#number-question{
+    font-size: 30px;
+    color: blue;
+}
+#points{
+    font-size: 30px !important;
+    color: green;
+}
+.first-question{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+.first-question img{
+    width: 400px;
+    height: 300px;
+    padding-right: 40px;
+    display: block;
+    float: left;
+}
+
+.question{
+    width: 300px;
+    text-align: center;
+    height: 300px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    word-break: break-word; /*zapobiega wychodzeniu tekstu poza diva*/
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+}
+#answer1{
+    width: 200px;
+}
+#answer2{
+    width: 200px;
+}
+#answer3{
+    width: 200px;
+}
+#answer4{
+    width: 200px;
+}
+.answer{
+    display: flex;
+    justify-content: center;
+    margin-top:2%;
+}
+.answer1{
+    text-align: center;
+    margin-top: 40px;
+    
+}
+.answer2{
+    text-align: center;
+    margin-top: 40px;
+    
+}
+.answer3{
+    text-align: center;
+    margin-top: 40px;
+    
+}
+.answer4{
+    text-align: center;
+    margin-top: 40px;
+    
+}
+.answers{
+   display: flex;
+   justify-content: center;
+   justify-items: center;
+   flex-direction: column;
+}
+body {
+    background-color: #edf6f9 !important;
+}
+#scoreBtn{
+    width: 200px;
+    height: 50px;
+}
+#deleteBtn{
+    margin-left: 38%;
+}
+#addBtn{
+    margin-top: 1%;
+    margin-left: 42%;
+}
+
+#new-question{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+#odp1{
+    margin-bottom: 1%;
+}
+#odp2{
+    margin-bottom: 1%;
+}
+#odp3{
+    margin-bottom: 1%;
+}
+#odp4{
+    margin-bottom: 1%;
+}
+#correct-answer{
+    margin-bottom: 2%;
+}
+#add-new-question{
+    margin-left: 38%;
+    width: 25%;
+    margin-top: 5%;
+}
+#back{
+    display: inline-block;
+    float: right;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.alert{
+    margin-top: 2%;
+}
+.score{
+    margin-top:3%;
+    display: flex;
+    justify-content: center;
+}
+.question-added{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1%;
+    margin-top: 2%;
+}
+.added-questions-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.question-info{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
