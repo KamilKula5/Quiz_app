@@ -59,6 +59,7 @@ let tempFirstAnswer1="";    //do przechowywania odpowiedzi w card-body
 let tempFirstAnswer2="";
 let tempFirstAnswer3="";
 let tempFirstAnswer4="";
+let quizEnded = false;
 correctAnswer = "";
 //scoreBtn.style.display="none";    //przycisk wynik ukryty na początku
 scoreClass.style.display="none";
@@ -218,6 +219,7 @@ nextAnswers = () => {
 }
 
 endOfQuiz = () => {
+    quizEnded = true;
     m++; //dodanie, żeby dodawanie pytań do puli się nie psuło
     scoreClass.style.display = "flex";
     console.log("koniec");
@@ -273,6 +275,7 @@ reset = () => {
 }
 
 deleteBtn.addEventListener('click', function () {
+    questionAddedContainer.style.display = "none";
     dangerAlert2.style.display="none";
     quiz.length=0;
     z=1;
@@ -319,7 +322,9 @@ addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli py
         dangerAlert1.style.display="block";
     }
     else{
-
+        if (quizEnded){
+            m--;
+        }
         dangerAlert1.style.disabled="none";
         questionAddedContainer.style.display="block";
         console.log(m);
@@ -438,7 +443,7 @@ addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli py
                 answersNext.appendChild(lineBreak2); //dodanie przejscia do nowej linii
             }
             quiz[m].correctAnswer=newCorrectAnswer.value;   //nazwa poprawnej odpowiedzi dodanej przez użytkownika
-            m++;    //inkremetacja zeby sie nie popsulo
+           m++;
 
         }
         else{
@@ -509,7 +514,7 @@ addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli py
                 cardBody.appendChild(lineBreak2); //dodanie przejscia do nowej linii
             }
             quiz[m].correctAnswer=newCorrectAnswer.value;   //nazwa poprawnej odpowiedzi dodanej przez użytkownika
-            m++;    //inkrementacja zeby dodawanie pytan sie nie psulo
+           m++;
         }
 
         // if (quiz[0].image === ""){  //jeśli użytkownik nie wstawi obrazka
@@ -524,6 +529,7 @@ addNewQuestion.addEventListener('click',function(){ //dodanie pytania do puli py
         newOdp3.value="";
         newOdp4.value="";
         newCorrectAnswer.value="";
+        quizEnded=false;
     }
 
 })
