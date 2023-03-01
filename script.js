@@ -17,6 +17,8 @@ const answer2 = document.querySelector('#answer2');
 const answer3 = document.querySelector('#answer3');
 const answer4 = document.querySelector('#answer4');
 const scoreBtn = document.querySelector('#scoreBtn');
+const questionInfo = document.querySelector('.question-info');
+
 const scoreClass = document.querySelector('.score');
 const firstQuestionImage = document.querySelector('#first-question-image');
 const newCorrectAnswer=document.querySelector('#correct-answer');
@@ -304,6 +306,10 @@ addBtn.addEventListener('click',function(){
         dangerAlert2.style.display="block";
     }
     else{
+        questionInfo.style.display="none";
+        questionContainer.style.display="none";
+        answersContainer.style.display="none";
+        questionAddedContainer.style.display="block";
         newQuestion.style.display="block";
         goBack.style.display="block";
         newOdp1.style.display="block";
