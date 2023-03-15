@@ -222,7 +222,7 @@ nextAnswers = () => {
 
 endOfQuiz = () => {
     quizEnded = true;
-    m++; //dodanie, żeby dodawanie pytań do puli się nie psuło
+    //m++; //dodanie, żeby dodawanie pytań do puli się nie psuło
     scoreClass.style.display = "flex";
     console.log("koniec");
     modalBody.textContent = `Twój wynik to: ${numberOfPoints}/${numberOfQuestion}`;
@@ -271,9 +271,11 @@ reset = () => {
     question.textContent = quiz[l].question;
     l++;
     j++;
+    z--; //żeby działało powtarzanie quizu
     questionContainer.style.display = "flex";
     answersContainer.style.display = "flex";  //pojawienie sie odpowiedzi po kliknięciu przycisku powtórz
     scoreClass.style.display = "none";    //ustawienie przycisku "wynik" na niewidoczny po kliknięciu powtórz
+
 }
 
 deleteBtn.addEventListener('click', function () {
@@ -321,6 +323,7 @@ addBtn.addEventListener('click', function () {
         //newImageText.style.display="block";
         //newImage.style.display="block";
         addNewQuestion.style.display = "block";
+        scoreClass.style.display="none";
     }
 })
 
@@ -329,9 +332,8 @@ addNewQuestion.addEventListener('click', function () { //dodanie pytania do puli
         dangerAlert1.style.display = "block";
     }
     else {
-        if (quizEnded) {
-            m--;
-        }
+        
+        
         dangerAlert1.style.disabled = "none";
         questionAddedContainer.style.display = "block";
         console.log(m);
@@ -457,14 +459,16 @@ addNewQuestion.addEventListener('click', function () { //dodanie pytania do puli
         newOdp3.value = "";
         newOdp4.value = "";
         newCorrectAnswer.value = "";
-        quizEnded = false;
+    
     }
+    
 
 })
 
 goBack.addEventListener('click', function () {    //cofanie po dodaniu własnych pytań i odpowiedzi
     //m=0;
     z = 1;
+    questionInfo.style.display="flex";
     goBackClicked = true;
     numberOfQuestion = 1;
     scoreClass.style.display = "none";
