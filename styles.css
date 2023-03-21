@@ -42,16 +42,16 @@ h1 {
     font-size: 25px;
 }
 #answer1{
-    width: 200px;
+    width: 300px;
 }
 #answer2{
-    width: 200px;
+    width: 300px;
 }
 #answer3{
-    width: 200px;
+    width: 300px;
 }
 #answer4{
-    width: 200px;
+    width: 300px;
 }
 .answer{
     display: flex;
