@@ -222,7 +222,6 @@ nextAnswers = () => {
 
 endOfQuiz = () => {
     quizEnded = true;
-    //m++; //dodanie, żeby dodawanie pytań do puli się nie psuło
     scoreClass.style.display = "flex";
     console.log("koniec");
     modalBody.textContent = `Twój wynik to: ${numberOfPoints}/${numberOfQuestion}`;
@@ -266,7 +265,7 @@ reset = () => {
     answer2.textContent = quiz[j].answers[1];
     answer3.textContent = quiz[j].answers[2];
     answer4.textContent = quiz[j].answers[3];
-    //image.src = quiz[l].image;
+    image.src = quiz[l].image;
     firstQuestionImage.src = quiz[l].image;
     question.textContent = quiz[l].question;
     l++;
