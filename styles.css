@@ -6,7 +6,6 @@ h1 {
     max-width: 800px !important;
     margin-top: 100px;
     border: 1px solid orange;
-    overflow: hidden;
 }
 #number-question{
     font-size: 30px;
@@ -91,14 +90,17 @@ body {
     width: 200px;
     height: 50px;
 }
-#deleteBtn{
-    margin-left: 38%;
+.delete-question{
+    display: flex;
+    justify-content: center;
+}
+.add-question{
+    display: flex;
+    justify-content: center;
 }
 #addBtn{
-    margin-top: 1%;
-    margin-left: 42%;
+    margin-top: 10px;
 }
-
 #new-question{
     margin-top: 2%;
     margin-bottom: 2%;
