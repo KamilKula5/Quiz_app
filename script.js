@@ -512,7 +512,7 @@ goBack.addEventListener('click', function () {    //cofanie po dodaniu własnych
         points.style.display = 'block';
         answersContainer.style.display = "flex";
         answer[0].disabled = false;   //usuwanie nieaktywnego przycisku
-        answer[1].disabled = false;
+        answer[1].disabled = false;   //usuwanie nieaktywnego przycisku
         answer[2].disabled = false;
         answer[3].disabled = false;
         answer[0].classList.remove("btn-outline-success")
