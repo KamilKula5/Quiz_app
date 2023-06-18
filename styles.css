@@ -131,6 +131,12 @@ body {
     margin-bottom: 10px;
     overflow: hidden;
 }
+.back{
+    margin-top: 1rem;
+    display: flex !important;
+    justify-content: center;
+    height: 3rem;
+}
 .alert{
     margin-top: 2%;
 }
